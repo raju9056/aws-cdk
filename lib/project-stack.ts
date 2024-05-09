@@ -14,15 +14,15 @@ export class ProjectStack extends Stack {
     super(scope, id, props);
 
     const bucket = new s3.Bucket(this, "FileUploadBucket", {
-      bucketName: "input-files-bucket", // Set exact bucket name
+      bucketName: "input-files-bucket", 
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
 
     const table = new dynamodb.Table(this, "DataTable", {
-      tableName: "InputData", // Set exact table name
+      tableName: "InputData", 
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
-      stream: dynamodb.StreamViewType.NEW_IMAGE, // Enable DynamoDB Stream
+      stream: dynamodb.StreamViewType.NEW_IMAGE, 
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
